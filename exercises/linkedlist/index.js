@@ -139,6 +139,32 @@ class LinkedList {
 		return;
 	}
 
+	insertAt(data, index){
+		// Insert when list is empty
+		if(!this.head){
+			this.head = new Node(data)
+			return;
+		}
+
+		// Insert when index 0
+		if(index === 0){
+			this.head = new Node(data, this.head)
+			return;
+		}
+
+		// Insert out of bounds
+		if(index > this.size()){
+			let last = this.getLast()
+			last.next = new Node(data)
+			return;
+		}
+
+		// Insert middle
+		const previous = this.getAt(index - 1);
+		previous.next =  new Node(data, previous.next)
+		return;
+	}
+
 }
 
 module.exports = { Node, LinkedList };
