@@ -35,18 +35,110 @@ class LinkedList {
 	}
 
 	getLast(){
-		let node = this.head;
-
-		while (node.next){
-			node = node.next;
+		if(!this.head){
+			return null
 		}
 
-		return node
+		let node = this.head;
+
+		while(node){
+			if(!node.next){
+				return node
+			}
+			node = node.next;
+		}
 	}
 
 	clear(){
 		this.head = null
 	}
+
+	removeFirst(){
+		if (this.head.next != null){
+			this.head = this.head.next
+		} else {
+			this.head = null
+		}
+	}
+
+	removeLast(){
+
+		if(!this.head){
+			return;
+		}
+
+		if(!this.head.next){
+			this.head = null;
+			return;
+		}
+
+		let previous = this.head;
+		let node = this.head.next;
+
+		while(node.next){
+			previous = node;
+			node = node.next; 
+		}
+
+		previous.next = null;
+
+		return;
+	}
+
+	insertLast(data){
+		const last = this.getLast();
+
+		if(last){
+			last.next = new Node(data)
+		} else {
+			this.head = new Node(data)
+		} 
+	}
+
+
+	getAt(index){		
+		let counter = 0;
+		let node = this.head;
+
+		while(node){
+			if(counter === index){
+				return node
+			}
+
+			counter++;
+			node = node.next;
+		}
+
+		return null
+	}
+
+	removeAt(index){
+		if(!this.head){
+			return;
+		}
+
+		if(index === 0){
+			this.head = this.head.next;
+			return;
+		}
+
+		const previous = this.getAt(index - 1);
+
+		if(!previous){
+			return;
+		}
+
+		if(!previous.next){
+			return;
+		}
+
+
+		previous.next = previous.next.next
+
+
+		return;
+	}
+
 }
 
 module.exports = { Node, LinkedList };
