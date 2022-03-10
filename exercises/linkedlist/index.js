@@ -169,7 +169,7 @@ class LinkedList {
 		let node = this.head
 		let index = 0
 
-		while (node){
+		while (node  ){
 			func(node, index)
 			index + 1
 			node = node.next
@@ -178,6 +178,13 @@ class LinkedList {
 		return;
 	}
 
+	*[Symbol.iterator](){
+		let node = this.head;
+		while(node){
+			yield node;
+			node = node.next
+		}
+	}
 }
 
 module.exports = { Node, LinkedList };
