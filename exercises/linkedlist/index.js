@@ -165,6 +165,19 @@ class LinkedList {
 		return;
 	}
 
+	forEach(func){
+		let node = this.head
+		let index = 0
+
+		while (node){
+			func(node, index)
+			index + 1
+			node = node.next
+		}
+
+		return;
+	}
+
 }
 
 module.exports = { Node, LinkedList };
