@@ -41,8 +41,16 @@ class Tree {
 			fn(level[0])
 			level.shift()
 		}
+	}
 
-		
+	traverseDF(fn){
+		let level = [this.root] 
+
+		while(level.length){
+			const node = level.shift()
+			level.unshift(...node.children)
+			fn(node)
+		}
 	}
 }
 
