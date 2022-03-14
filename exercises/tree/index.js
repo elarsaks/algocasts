@@ -20,8 +20,10 @@ class Node {
 		this.children.push(new Node(data, children))
 	}
 
-	remove(key){
-		this.children.shift();
+	remove(data){
+		this.children = this.children.filter(node => {
+			return node.data !== data
+		});
 	}
 }
 
